@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7fb">
+  <meta name="description" content="Questforge is a playful workspace for building lessons and learning by playing.">
+  <title>Questforge — Make learning a quest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Questforge home">
+        <span class="brand-mark">✦</span><span>questforge</span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="main-nav">
+        <button class="nav-link active" data-view="builder"><span class="nav-icon">▤</span> Lesson builder</button>
+        <button class="nav-link" data-view="play"><span class="nav-icon">▶</span> Student preview</button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-card">
+        <div class="sidebar-sparkle">✦</div>
+        <strong>Learning that sticks.</strong>
+        <p>Build a little. Play a little. Learn a lot.</p>
+      </div>
+      <div class="profile-row"><div class="avatar teacher-avatar">JM</div><div><strong>Jamie Morgan</strong><small>Teacher workspace</small></div><span class="more-dots">···</span></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>My lessons</span><span class="crumb-slash">/</span><strong id="top-lesson-name">The Solar System</strong></div>
+        <div class="top-actions"><span class="save-status" id="save-status"><span class="status-dot"></span> All changes saved</span><button class="top-avatar" aria-label="Jamie Morgan">JM</button></div>
+      </header>
+
+      <section id="builder-view" class="view active-view">
+        <div class="page-heading">
+          <div><div class="eyebrow"><span class="eyebrow-icon">✦</span> YOUR CREATION STUDIO</div><h1>Make a lesson <span>an adventure.</span></h1><p>Build a learning quest, then jump in and play it like your students.</p></div>
+          <button class="button button-primary" id="publish-button"><span>↗</span> Publish lesson</button>
+        </div>
+        <div class="builder-layout">
+          <div class="editor-column">
+            <section class="panel lesson-details">
+              <div class="panel-heading"><div class="section-icon purple">✧</div><div><h2>Quest details</h2><p>Give your learning adventure a personality.</p></div><span class="step-label">01</span></div>
+              <div class="field-grid">
+                <label class="field full-field">Lesson title<input id="lesson-title" type="text" maxlength="70" value="The Solar System" placeholder="e.g. The Solar System"></label>
+                <label class="field">Subject<select id="lesson-subject"><option>Science</option><option>Mathematics</option><option>Language Arts</option><option>History</option><option>Computer Science</option><option>Other</option></select></label>
+                <label class="field">Grade level<select id="lesson-grade"><option>Grade 5</option><option>Grade 3</option><option>Grade 4</option><option>Grade 6</option><option>Grade 7</option><option>Grade 8</option><option>High school</option><option>All ages</option></select></label>
+                <label class="field full-field">Quest intro<textarea id="lesson-intro" rows="2" maxlength="180" placeholder="Set the scene for your learners...">Your mission: explore our cosmic neighborhood and discover what makes each planet unique. Ready for liftoff?</textarea><small class="field-hint">A little story goes a long way. Keep it under 180 characters.</small></label>
+              </div>
+            </section>
+
+            <div class="section-title-row"><div><div class="eyebrow"><span class="eyebrow-icon">⌘</span> THE CHALLENGE</div><h2>Quest checkpoints <span class="count-pill" id="question-count">3</span></h2></div><button class="button button-secondary add-button" id="add-question"><span>＋</span> Add checkpoint</button></div>
+            <div id="question-list" class="question-list"></div>
+            <div class="editor-footer"><span class="tiny-check">✓</span> Your progress is saved automatically on this device.</div>
+          </div>
+
+          <aside class="preview-column">
+            <div class="preview-header"><div><div class="eyebrow">LIVE PREVIEW</div><h3>Your quest card</h3></div><span class="live-pill"><span></span> LIVE</span></div>
+            <div class="quest-card">
+              <div class="quest-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="planet planet-main">◉</div><span class="star star-a">✦</span><span class="star star-b">✧</span><span class="star star-c">✦</span><span class="art-label">COSMIC EXPLORER</span></div>
+              <div class="quest-card-content"><div class="card-tags"><span class="tag tag-subject" id="preview-subject">SCIENCE</span><span class="tag tag-grade" id="preview-grade">GRADE 5</span></div><h3 id="preview-title">The Solar System</h3><p id="preview-intro">Your mission: explore our cosmic neighborhood and discover what makes each planet unique. Ready for liftoff?</p><div class="quest-meta"><span>◷ &nbsp;5 min</span><span>✦ &nbsp;<b id="preview-xp">30</b> XP</span><span>▤ &nbsp;<b id="preview-count">3</b> checkpoints</span></div><div class="mini-progress"><span></span><span></span><span></span></div></div>
+            </div>
+            <div class="preview-tip"><span class="tip-icon">✦</span><div><strong>Designed for momentum</strong><p>Short checkpoints keep learners curious and moving forward.</p></div></div>
+            <button class="button button-play" id="preview-play"><span>▶</span> Play your lesson</button>
+          </aside>
+        </div>
+      </section>
+
+      <section id="play-view" class="view">
+        <div class="play-topline"><button class="back-link" id="back-to-builder">← Back to builder</button><span class="play-mode-pill"><span></span> STUDENT PREVIEW</span></div>
+        <div class="game-wrap" id="game-wrap"></div>
+      </section>
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
